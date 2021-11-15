@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+    {{ super() }}
+    
+{% endblock %}
+{% block content %}
+<main class="mt-5 pt-3">
+    <div class="container-fluid">
+        <!-- Button trigger modal -->
+        <div class="row">
+
+			<div class="table-container">
+				
+				{% if success_message|length > 0 %}
+					<h4 class="alert-success">{{success_message}}</h4>
+				{% endif %}
+				{% if failed_message|length > 0 %}
+					<h4 class="alert-danger">{{failed_message}}</h4>
+				{% endif %}
+				<div class="col-md-12 mb-3">
+                    <div class="card space">
+                        <div class="card-header">
+                            <span><i class="bi bi-table me-2"></i></span> Device history
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="example" class="table table-striped data-table" style="width: 100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Customer ID</th>
+                                            <th>Customer name</th>
+                                            <th>Email</th>
+                                            <th>Contact number</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for customer in customers %}
+                                            <tr>
+                                                <td>{{customer[0]}}</td>
+                                                <td>{{customer[1]}}</td>
+                                                <td>{{customer[2]}}</td>
+                                                <td>{{customer[3]}}</td>
+                                            </tr>
+                                        {% endfor%}
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Customer ID</th>
+                                            <th>Customer name</th>
+                                            <th>Email</th>
+                                            <th>Contact number</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <form action="{{ url_for('show_customers') }}" method="POST" class="form-new-back">
+                    <button name="back" class="btn btn-primary btn-block space" type="submit"><i class="bi bi-backspace"></i> Back</button>
+                </form>
+			</div>
+        </div>
+        
+
+</main>
+{% endblock %}

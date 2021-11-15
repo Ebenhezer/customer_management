@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+    {{ super() }}
+    
+{% endblock %}
+{% block content %}
+<main class="mt-5 pt-3">
+    <div class="container-fluid">
+        <div class="container bg-light">
+            <form action="{{ url_for('modify_customer') }}" method="POST">
+                <h3 class="h3 mb-3 font-weight-normal" style="text-align: center"> Modify Customer</h3>
+                {% if success_message|length > 0 %}
+                    <h4 class="alert-success" style="text-align: center">{{success_message}}</h4>
+                {% endif %}
+                {% if failed_message|length > 0 %}
+                    <h4 class="alert-danger" style="text-align: center">{{failed_message}}</h4>
+                {% endif %}
+                <!-- Create a display customer_id input field and disable it. If disabled, it does not get passed with the form data -->
+                <input type="text" value="{{customer_id}}"  class="mt-1 form-control space" maxlength="50" disabled>
+                <!-- Create the ID input field but hide it. This will be passed when submitting the form-->
+                <input name ="customer_id" type="text" id="customer_id" class="mt-1 form-control space" value="{{customer_id}}"  maxlength="50" hidden required autofocus="">
+                <input name ="customer_name" type="text" id="customer_name" class="mt-1 form-control space" value="{{customer_name}}"  maxlength="50" required autofocus="">
+                <input name ="customer_email" type="email" id="customer_email" class="form-control space" value="{{customer_email}}"  maxlength="50"  required autofocus="">
+                <input name ="contact_number" type="number" id="contact_number" class="form-control space" value="{{contact_number}}"  maxlength="11"  required autofocus="">
+                <button name="back" class="btn btn-primary btn-block space" type="submit"><i class="bi bi-backspace"></i> Back</button>
+                <button  class="btn btn-primary btn-block space" type="button" id="delete" data-bs-toggle="modal" data-bs-target="#deleteModal"></i> Delete Customer </button>
+                <button name="edit_customer" class="btn btn-primary btn-block space pull-right" type="submit"><i class="bi bi-plus-square"></i> Submit</button>
+            </form>
+
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <form action="{{ url_for('modify_customer') }}" method="POST">
+                <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Delete customer</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete the customer <br>
+                    Customer ID: {{customer_id}}
+                    <input name ="customer_id" type="text" id="customer_id" class="mt-1 form-control space" value="{{customer_id}}"  maxlength="50" hidden required autofocus="">
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                <button name="delete"  type="submit" class="btn btn-primary">Yes, delete</button>
+                </div>
+            </form>
+        </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

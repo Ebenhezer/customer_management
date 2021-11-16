@@ -3,7 +3,7 @@ from sqlite3 import Error
 from sqlalchemy import Table, Column, Integer, String, create_engine, MetaData, Text
 from sqlalchemy.sql.expression import false
 
-engine = create_engine('sqlite:///customer.db', echo = False)
+engine = create_engine('sqlite:///customer.sql', echo = False)
 
 #Using ORM
 connection = engine.connect()

@@ -23,11 +23,11 @@
                                 <h4 class="alert-danger" style="text-align: center">{{failed_message}}</h4>
                             {% endif %}
                             <p>Company name</p>
-                            <input name ="company_name" type="text" id="company_name" class="mt-1 form-control space" placeholder="Customer Name" maxlength="50" value="{{company_name}}" autofocus="">
+                            <input name ="company_name" type="text" id="company_name" class="mt-1 form-control space" placeholder="Company Name" maxlength="50" value="{{company_name}}" autofocus="">
                             <p class="space">Company email address</p>
-                            <input name ="customer_email" type="email" id="customer_email" class="form-control space" placeholder="Customer Email" maxlength="50" value="{{customer_email}}"  autofocus="">
+                            <input name ="customer_email" type="email" id="customer_email" class="form-control space" placeholder="Company Email" maxlength="50" value="{{customer_email}}"  autofocus="">
                             <!-- max length does not quite work well with type numbers so the following is done to handle the max length -->
-                            <p class="space">Company email address</p>
+                            <p class="space">Contact number</p>
                             <input name ="contact_number" id="contact_number" class="form-control space"
                                 oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                 type = "number"
